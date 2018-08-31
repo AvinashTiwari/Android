@@ -61,7 +61,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
           Intent intent = getIntent();
           if(intent.getIntExtra("placeNumber", 0) == 0){
-              locationManager =
+              locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+              locationListener = new LocationListener() {
+                  @Override
+                  public void onLocationChanged(Location location) {
+                      centerMapOnLocation(location, "Your Location");
+                  }
+
+                  @Override
+                  public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                  }
+
+                  @Override
+                  public void onProviderEnabled(String s) {
+
+                  }
+
+                  @Override
+                  public void onProviderDisabled(String s) {
+
+                  }
+              }
           }
 
         // Add a marker in Sydney and move the camera
