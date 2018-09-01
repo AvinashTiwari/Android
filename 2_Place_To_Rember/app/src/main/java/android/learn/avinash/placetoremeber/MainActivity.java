@@ -24,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listview = findViewById(R.id.listView);
+        ListView listView = findViewById(R.id.listView);
+        places.add("Add a new place...");
+        locations.add(new LatLng(0,0));
 
-        ArrayList<String> places = new ArrayList<>();
-        places.add("Add New Place ...");
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, places);
 
-         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, places);
-        listview.setAdapter(arrayAdapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
@@ -40,5 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }
