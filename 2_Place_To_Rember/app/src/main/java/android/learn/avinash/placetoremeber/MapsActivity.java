@@ -44,6 +44,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                centerMapOnLocation(lastKnownLocation, "Your Location");
+            }
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,38 +69,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-      @Override
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-          Intent intent = getIntent();
-          if(intent.getIntExtra("placeNumber", 0) == 0){
-              locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
-              locationListener = new LocationListener() {
-                  @Override
-                  public void onLocationChanged(Location location) {
-                      centerMapOnLocation(location, "Your Location");
-                  }
+        Intent intent = getIntent();
+        if (intent.getIntExtra("placeNumber", 0) == 0) {
+            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    centerMapOnLocation(location, "Your Location");
+                }
 
-                  @Override
-                  public void onStatusChanged(String s, int i, Bundle bundle) {
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
 
-                  }
+                }
 
-                  @Override
-                  public void onProviderEnabled(String s) {
+                @Override
+                public void onProviderEnabled(String s) {
 
-                  }
+                }
 
-                  @Override
-                  public void onProviderDisabled(String s) {
+                @Override
+                public void onProviderDisabled(String s) {
 
-                  }
-              }
-          }
+                }
+            };
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                centerMapOnLocation(lastKnownLocation, "Your Location");
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        } else {
+            Location placeLocation = new Location(LocationManager.GPS_PROVIDER);
+            placeLocation.setLatitude(MainActivity.locations.get(intent.getIntExtra("placeNumber", 0)).latitude);
+            placeLocation.setLongitude(MainActivity.locations.get(intent.getIntExtra("placeNumber", 0)).longitude);
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            centerMapOnLocation(placeLocation, MainActivity.places.get(intent.getIntExtra("placeNumber", 0)));
+        }
+
+
     }
 }
+
