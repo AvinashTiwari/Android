@@ -11,10 +11,12 @@ package com.parse.starter;
 import android.app.Application;
 import android.util.Log;
 
+import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -36,20 +38,36 @@ public class StarterApplication extends Application {
             .build()
     );
 
-    ParseObject object = new ParseObject("ExampleObject");
-    object.put("myNumber", "123");
-    object.put("myString", "rob");
+   ParseObject score = new ParseObject("Score");
+   score.put("username", "Tiwari1");
+   score.put("score", 65);
+   score.saveInBackground(new SaveCallback() {
+       @Override
+       public void done(ParseException e) {
+         if(e == null){
+             Log.i("Sucess",  "Saved the score");
+         }else
+         {
 
-    object.saveInBackground(new SaveCallback () {
-      @Override
-      public void done(ParseException ex) {
-        if (ex == null) {
-          Log.i("Parse Result", "Successful!");
-        } else {
-          Log.i("Parse Result", "Failed" + ex.toString());
-        }
-      }
-    });
+         }
+       }
+   });
+
+      ParseQuery<ParseObject> query = ParseQuery.getQuery("Score");
+      query.getInBackground("Vv94ev9ayn", new GetCallback<ParseObject>() {
+          @Override
+          public void done(ParseObject object, ParseException e) {
+            if(e== null && object!=null ){
+               String username = object.getString("username");
+               Log.i("User name",username );
+               Integer score = object.getInt("score");
+                object.put("score", 85);
+                object.saveInBackground();
+                Log.i("User Score ",Integer.toString(score) );
+
+            }
+          }
+      });
 
 
     ParseUser.enableAutomaticUser();
