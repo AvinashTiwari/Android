@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "L:\\AndroidGithub\\Git\\4_Instagram_Clone\\ParseStarterProject\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rSG\\values-en-rSG.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\avinash.t\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-wallet-9.4.0.aar\\f9062ee828e7ab03b9e3854622287861\\res\\values-en-rSG\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "292",
+                        "endColumns": "103",
+                        "endOffsets": "391"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "103",
+                        "endOffsets": "154"
+                    }
+                }
+            ]
+        }
+    ]
+}
