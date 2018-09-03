@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -118,6 +119,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String output = "json";
         //Create url to request
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + param;
+
+        Log.i("Avinash Url ", url );
+
+
         return url;
     }
 
@@ -141,6 +146,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 stringBuffer.append(line);
             }
 
+            Log.i(" Avinash  json " ,stringBuffer.toString() );
             responseString = stringBuffer.toString();
             bufferedReader.close();
             inputStreamReader.close();
