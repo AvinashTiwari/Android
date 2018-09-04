@@ -11,6 +11,7 @@ package com.parse.starter;
 import android.app.Application;
 import android.util.Log;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseACL;
@@ -19,6 +20,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
 
 public class StarterApplication extends Application {
@@ -69,6 +72,26 @@ public class StarterApplication extends Application {
           }
       });
 
+
+
+
+      ParseQuery<ParseObject> advanceQuery = ParseQuery.getQuery("Score");
+      advanceQuery.whereEqualTo("username","Avinash1");
+      advanceQuery.setLimit(1);
+      advanceQuery.findInBackground(new FindCallback<ParseObject>() {
+          @Override
+          public void done(List<ParseObject> objects, ParseException e) {
+              if(e == null){
+                  if(objects.size() > 0){
+                      for(ParseObject obj : objects)
+                      {
+                         Log.i("Avinash1 UserName ", obj.getString("username"));
+                          Log.i("Avinash1 Score  ",  Integer.toString(obj.getInt("score")));
+
+                      }                  }
+              }
+          }
+      });
 
     ParseUser.enableAutomaticUser();
 
