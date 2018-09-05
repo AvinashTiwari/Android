@@ -41,6 +41,7 @@ public class StarterApplication extends Application {
             .build()
     );
 
+/*
    ParseObject score = new ParseObject("Score");
    score.put("username", "Tiwari1");
    score.put("score", 65);
@@ -92,7 +93,7 @@ public class StarterApplication extends Application {
               }
           }
       });
-
+*/
     ParseUser.enableAutomaticUser();
 
     ParseACL defaultACL = new ParseACL();

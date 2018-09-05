@@ -21,6 +21,7 @@ import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +32,41 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    
+    /*
+     ParseUser user = new ParseUser();
+    user.setUsername("Avinash");
+    user.setPassword("Avinash");
+    user.signUpInBackground(new SignUpCallback() {
+      @Override
+      public void done(ParseException e) {
+        if(e == null){
+          Log.i("Avinash Sig up",  "Ok we did it");
+
+        }else
+        {
+          e.printStackTrace();
+        }
+      }
+    });*/
+
+    ParseUser.logInInBackground(
+            "Avinash",
+            "Avinash",
+            new LogInCallback() {
+              @Override
+              public void done(ParseUser user, ParseException e) {
+                if(user !=null )
+                {
+                    Log.i("Avinash User Logged" , "user Logged");
+
+                }else
+                {
+                    Log.i("Avinash User Logged" , "user failed to Logged");
+                }
+              }
+            }
+    );
+
     ParseAnalytics.trackAppOpenedInBackground(getIntent());
   }
 

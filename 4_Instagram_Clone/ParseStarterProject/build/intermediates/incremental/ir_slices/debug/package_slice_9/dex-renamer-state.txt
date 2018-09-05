@@ -1,4 +1,4 @@
-#Mon Sep 03 14:29:38 MDT 2018
+#Tue Sep 04 19:39:11 MDT 2018
 base.0=L\:\\AndroidGithub\\Git\\4_Instagram_Clone\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\9
 path.0=classes.dex
 renamed.0=classes.dex
