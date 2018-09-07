@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Switch;
 
 import com.parse.LogInCallback;
@@ -25,6 +26,10 @@ import com.parse.SaveCallback;
 
 public class MainActivity extends AppCompatActivity {
 
+  public void signUpClikced(View view){
+    EditText userNameEditText = (EditText) findViewById(R.id.usernameEditText);
+
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

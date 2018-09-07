@@ -25,33 +25,16 @@ public class StarterApplication extends Application {
   public void onCreate() {
     super.onCreate();
 
-    // e6uPFYEglpBE
-
     // Enable Local Datastore.
     Parse.enableLocalDatastore(this);
 
     // Add your initialization code here
     Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
-            .applicationId("2dd65b9333c34e71225e4feb5882e1a756ad894e")
-            .clientKey("b4164aa7a1a765749c911ed075fc74e57a332441")
-            .server("http://18.221.22.237:80/parse/")
+            .applicationId("9d453866a31822a096c1fe6678a994837e377014")
+            .clientKey("872796cc6267d4ee749f80cb68d5d876157c923f")
+            .server("http://52.14.108.106:80/parse/")
             .build()
     );
-
-    ParseObject object = new ParseObject("ExampleObject");
-    object.put("myNumber", "123");
-    object.put("myString", "rob");
-
-    object.saveInBackground(new SaveCallback () {
-      @Override
-      public void done(ParseException ex) {
-        if (ex == null) {
-          Log.i("Parse Result", "Successful!");
-        } else {
-          Log.i("Parse Result", "Failed" + ex.toString());
-        }
-      }
-    });
 
 
     ParseUser.enableAutomaticUser();
