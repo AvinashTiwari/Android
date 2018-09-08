@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
@@ -22,12 +23,37 @@ import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 
 public class MainActivity extends AppCompatActivity {
 
   public void signUpClikced(View view){
-    EditText userNameEditText = (EditText) findViewById(R.id.usernameEditText);
+    EditText userNameEditText =(EditText) findViewById(R.id.usernameEditText);
+    EditText passwordEditText =(EditText) findViewById(R.id.passwordEditText);
+
+    if(userNameEditText.getText().toString() == "" ||
+            passwordEditText.getText().toString() == "" ){
+      Toast.makeText(this, "Username and password is Required", Toast.LENGTH_SHORT).show();
+    }else
+    {
+        ParseUser user = new ParseUser();
+        user.setUsername(userNameEditText.getText().toString());
+        user.setPassword(passwordEditText.getText().toString());
+
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e== null){
+                    Log.i("Avinash Sign up ", "Sucess");
+                }else
+                {
+                    Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
 
   }
 
