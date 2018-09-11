@@ -36,7 +36,6 @@ public class StarterApplication extends Application {
             .build()
     );
 
-
     ParseUser.enableAutomaticUser();
 
     ParseACL defaultACL = new ParseACL();

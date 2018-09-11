@@ -56,4 +56,19 @@
         android:layout_marginBottom="128dp"
         android:onClick="signUpClikced"
         android:text="Sign Up" />
+
+
+    <TextView
+        android:id="@+id/loginTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/signupButton"
+        android:layout_alignBottom="@+id/signupButton"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_toEndOf="@+id/signupButton"
+       android:layout_toRightOf="0dp"
+        android:text="or, Login"
+        android:textColor="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
+        android:textSize="20sp" />
 </RelativeLayout>
