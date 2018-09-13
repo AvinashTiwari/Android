@@ -68,7 +68,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_toEndOf="@+id/signupButton"
-       android:layout_toRightOf="0dp"
+       android:layout_toRightOf="@+id/signupButton"
         android:text="or, Login"
         android:textColor="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
         android:textSize="20sp" />
