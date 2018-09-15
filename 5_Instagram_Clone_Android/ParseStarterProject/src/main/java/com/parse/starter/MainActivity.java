@@ -61,6 +61,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView loginTextView;
     EditText usernameEditText;
     EditText passwordEditText;
+
+    public void showUserList() {
+        Intent intent = new Intent(getApplicationContext(), UserListActivity.class);
+        startActivity(intent);
+    }
+
+
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
 
@@ -98,6 +105,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void signUpClikced(View view){
+
+
         if (usernameEditText.getText().toString().matches("") || passwordEditText.getText().toString().matches("")) {
             Toast.makeText(this, "A username and a password are required.",Toast.LENGTH_SHORT).show();
 
@@ -112,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void done(ParseException e) {
                         if (e == null) {
                             Log.i("Signup", "Success");
+                            showUserList();
                         } else {
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -124,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
                             Log.i("Login","ok!");
+                            showUserList();
                         } else {
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -131,7 +142,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         }
-
   }
 
   @Override
@@ -149,8 +159,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
       passwordEditText.setOnKeyListener(this);
 
-    
-    ParseAnalytics.trackAppOpenedInBackground(getIntent());
+      if (ParseUser.getCurrentUser() != null) {
+          showUserList();
+      }
+
+
+      ParseAnalytics.trackAppOpenedInBackground(getIntent());
   }
 
 }
