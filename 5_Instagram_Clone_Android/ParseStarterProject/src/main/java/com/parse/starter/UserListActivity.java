@@ -1,10 +1,12 @@
 package com.parse.starter;
 
 import android.*;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -101,7 +103,7 @@ public class UserListActivity extends AppCompatActivity {
     }
 
     @Override
-
+    @TargetApi(Build.VERSION_CODES.M)
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.share) {
@@ -120,7 +122,7 @@ public class UserListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
 
-        final ListView listView = findViewById(R.id.listView);
+        final ListView listView = (ListView)findViewById(R.id.listView);
         final ArrayList<String> usernames = new ArrayList<String>();
         final ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, usernames);
 
