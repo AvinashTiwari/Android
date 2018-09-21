@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserListActivity extends AppCompatActivity {
-
     public void getPhoto() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);

@@ -57,6 +57,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener , View.OnKeyListener{
+
     Boolean signUpModeActive = true;
     TextView loginTextView;
     EditText usernameEditText;
@@ -67,12 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-
     @Override
     public boolean onKey(View view, int i, KeyEvent keyEvent) {
 
         if (i == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-            signUpClikced(view);
+            signUpClicked(view);
         }
 
         return false;
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.loginTextView) {
 
-            Button signUpButton = (Button)findViewById(R.id.signupButton);
+            Button signUpButton = findViewById(R.id.signUpButton);
 
             if (signUpModeActive) {
                 signUpModeActive = false;
@@ -100,12 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-
-
-
-    public void signUpClikced(View view){
-
+    public void signUpClicked(View view) {
 
         if (usernameEditText.getText().toString().matches("") || passwordEditText.getText().toString().matches("")) {
             Toast.makeText(this, "A username and a password are required.",Toast.LENGTH_SHORT).show();
@@ -142,29 +137,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
             }
         }
-  }
+    }
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
-      loginTextView = (TextView)findViewById(R.id.loginTextView);
-      loginTextView.setOnClickListener(this);
-      usernameEditText = (EditText)findViewById(R.id.usernameEditText);
-      passwordEditText = (EditText)findViewById(R.id.passwordEditText);
-      ImageView logoImageView = (ImageView)findViewById(R.id.logoImageView);
-      RelativeLayout backgroundLayout = (RelativeLayout) findViewById(R.id.backgroundLayout);
-      logoImageView.setOnClickListener(this);
-      backgroundLayout.setOnClickListener(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-      passwordEditText.setOnKeyListener(this);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-      if (ParseUser.getCurrentUser() != null) {
-          showUserList();
-      }
+        setTitle("Instagram");
 
+        loginTextView = (TextView)findViewById(R.id.loginTextView);
+        loginTextView.setOnClickListener(this);
+        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
+        passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        ImageView logoImageView =(ImageView) findViewById(R.id.logoImageView);
+        RelativeLayout backgroundLayout = (RelativeLayout)findViewById(R.id.backgroundLayout);
+        logoImageView.setOnClickListener(this);
+        backgroundLayout.setOnClickListener(this);
+        passwordEditText.setOnKeyListener(this);
 
-      ParseAnalytics.trackAppOpenedInBackground(getIntent());
-  }
+        if (ParseUser.getCurrentUser() != null) {
+            showUserList();
+        }
+
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+    }
 
 }

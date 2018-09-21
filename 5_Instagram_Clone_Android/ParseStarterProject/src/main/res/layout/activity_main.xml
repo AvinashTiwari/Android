@@ -55,7 +55,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="128dp"
-        android:onClick="signUpClikced"
+        android:onClick="signUpClicked"
         android:text="Sign Up" />
 
 
