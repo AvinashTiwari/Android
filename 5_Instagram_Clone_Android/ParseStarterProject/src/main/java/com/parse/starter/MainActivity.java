@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId() == R.id.loginTextView) {
 
-            Button signUpButton = findViewById(R.id.signUpButton);
+            Button signUpButton = (Button)findViewById(R.id.signupButton);
 
             if (signUpModeActive) {
                 signUpModeActive = false;
