@@ -1,5 +1,6 @@
 package learn.android.backgroundservice;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -47,6 +48,7 @@ public class MyBackgroundService extends Service {
             super.onPreExecute();
         }
 
+        @SuppressLint("WrongThread")
         @Override
         protected Void doInBackground(Void... voids) {
             Log.i(TAG, "doInBackground, Thread name : " + Thread.currentThread().getName());
