@@ -20,9 +20,9 @@ public class MyIntentService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.i(TAG, "onHandleIntent , ThreadName " + Thread.currentThread().getName());
-
+        int duration = intent.getIntExtra("sleepTime", -1);
         int ctr = 1;
-        while(ctr <=12){
+        while(ctr <=duration){
             Log.i(TAG, "Time elapsed " + ctr + " sec");
             try {
                 Thread.sleep(1000);
