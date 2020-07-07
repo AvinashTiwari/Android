@@ -3,6 +3,7 @@ package learn.android.backgroundservice;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 public class MyIntentService extends IntentService {
@@ -31,12 +32,16 @@ public class MyIntentService extends IntentService {
             }
             ctr++;
         }
-    }
 
+        Intent localIntent = new Intent("my.own.broadcast");
+        localIntent.putExtra("result", ctr);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+/*
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy , ThreadName " + Thread.currentThread().getName());
 
-    }
+    }*/
 }
