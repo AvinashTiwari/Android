@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyBackgroundService"/>
-        <service android:name=".MyIntentService"/>
+        <service android:name=".MyBackgroundService" android:exported="false"/>
+        <service android:name=".MyIntentService" android:exported="false"/>
 
     </application>
 
